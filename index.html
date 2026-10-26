@@ -1,0 +1,15 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Codex Prompt Library</title>
+<style>body{font-family:system-ui,sans-serif;max-width:720px;margin:0 auto;padding:20px;background:#f7f7f5}input{width:100%;padding:8px;border:1px solid #ddd;border-radius:8px;box-sizing:border-box}.card{background:#fff;border:1px solid #e5e5e0;border-radius:12px;padding:14px;margin:12px 0;white-space:pre-wrap}button{background:#111;color:#fff;border:0;border-radius:8px;padding:6px 12px}.muted{color:#888;font-size:13px}</style></head>
+<body><h1>Codex Prompt Library</h1><p class="muted">Unofficial template library, not affiliated with OpenAI. Templates are shown and copied locally only. No login, no API key. Edit the copied prompt for your own project before using it.</p>
+<input id="q" placeholder="Search: debug, refactor, test, docs..." oninput="render()"><div id="list"></div>
+<script>
+const T=[
+['Debug','First reproduce this bug with minimal steps, then find the root cause. Do not change code before confirming the cause. After fixing, give the smallest change and note any side effects.'],
+['Refactor','Refactor this code without changing its external behavior: split large functions, remove duplication, add necessary comments. List the files you changed.'],
+['Write tests','Write unit tests for this function covering normal, edge, and error cases. Tests must run independently, and failures must say clearly what went wrong.'],
+['Write docs','Write a short doc for this module in plain English: what it does, its inputs and outputs, and common pitfalls. No filler.'],
+['Code review','Review this code for logic errors, security issues, and performance issues, sorted by severity. Only give actionable suggestions.'],
+['Fix an error','Here is an error message. First explain what it means, then give step-by-step debugging checks, then a fix.']];
+function render(){const q=(document.getElementById('q').value||'').toLowerCase();document.getElementById('list').innerHTML=T.filter(t=>(t[0]+t[1]).toLowerCase().includes(q)).map(t=>'<div class="card"><b>'+t[0]+'</b><br>'+t[1]+'<br><button onclick="navigator.clipboard.writeText(this.dataset.p).then(()=>alert(\'Copied\'))" data-p="'+t[1].replace(/"/g,'&quot;')+'">Copy template</button></div>').join('')||'<p class="muted">No matching template.</p>';}
+render();
+</script></body></html>
