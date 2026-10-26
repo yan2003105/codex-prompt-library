@@ -1,0 +1,9 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Codex 编程提示词模板库</title>
+<style>body{font-family:system-ui,"PingFang SC",sans-serif;max-width:720px;margin:0 auto;padding:20px;background:#f7f7f5}input{width:100%;padding:8px;border:1px solid #ddd;border-radius:8px;box-sizing:border-box}.card{background:#fff;border:1px solid #e5e5e0;border-radius:12px;padding:14px;margin:12px 0;white-space:pre-wrap}button{background:#111;color:#fff;border:0;border-radius:8px;padding:6px 12px}.muted{color:#888;font-size:13px}</style></head>
+<body><h1>Codex 编程提示词模板库</h1><p class="muted">非官方模板库，与 OpenAI 无关。模板只在浏览器里展示和复制，不登录、不要 API Key，复制后请按你自己的项目改细节再用。</p>
+<input id="q" placeholder="搜索：调试、重构、测试、文档…" oninput="render()"><div id="list"></div>
+<script>
+const T=[['调试','请先复现这个 bug，写出最小复现步骤，再定位根因，不要直接改代码。确认根因后给出最小改动，并说明有没有副作用。'],['重构','在不改变对外行为的前提下重构这段代码：拆小函数、去掉重复逻辑、补上必要的注释。改完列出改了哪些文件。'],['写测试','为这个函数写单元测试，覆盖正常、边界和异常三种情况，测试要能独立运行，失败时报错要说清楚。'],['写文档','用中文给这个模块写一份简短说明：它是干嘛的、输入输出是什么、常见坑有哪些，不要写废话。'],['代码审查','审查这段代码，指出逻辑错误、安全问题和性能问题，按严重程度排序，只说能落地的修改建议。'],['修报错','报错信息如下，请先解释报错是什么意思，再给出一步步的排查方法，最后给出修复方案。']];
+function render(){const q=(document.getElementById('q').value||'').toLowerCase();document.getElementById('list').innerHTML=T.filter(t=>(t[0]+t[1]).toLowerCase().includes(q)).map(t=>'<div class="card"><b>'+t[0]+'</b><br>'+t[1]+'<br><button onclick="navigator.clipboard.writeText(this.dataset.p).then(()=>alert(\'已复制\'))" data-p="'+t[1].replace(/"/g,'&quot;')+'">复制模板</button></div>').join('')||'<p class="muted">没有匹配的模板。</p>';}
+render();
+</script></body></html>

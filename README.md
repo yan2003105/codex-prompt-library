@@ -5,3 +5,9 @@ Unofficial template library, not affiliated with OpenAI. A single-file local lib
 ## License
 
 MIT, see `LICENSE`.
+
+
+## Versions / 版本
+
+- English: `index.html`
+- 中文版：`index-zh.html`
